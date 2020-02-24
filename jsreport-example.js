@@ -36,6 +36,8 @@ app.post("/reportTestA/", (req, res, next) => {
     ]
   };
 
+  console.log(nf.itens[0].nro);
+
   var tableBegin = '<table border="1">';
   var tableEnd = "</table>";
 
@@ -47,9 +49,16 @@ app.post("/reportTestA/", (req, res, next) => {
   var tHeadItNf =
     "<tr><td>Numero do item</td><td>Descrição</td><td>Quantidade</td></tr>";
   var tBodyItNf =
-    "<tr><td>{{nf.itens[0].nro}}</td><td>{{nf.itens[0].descr}}</td><td>{{nf.itens[0].qtde}}</td></tr>";
+    "<tr><td>" +
+    nf.itens[0].nro +
+    "</td><td>" +
+    nf.itens[0].descr +
+    "</td><td>" +
+    nf.itens[0].qtde +
+    "</td></tr>";
 
-  var content = tableBegin + tHeadNf + tBodyNf + tHeadItNf + tBodyItNf;
+  var content =
+    tableBegin + tHeadNf + tBodyNf + tHeadItNf + tBodyItNf + tableEnd;
 
   client
     .render({
